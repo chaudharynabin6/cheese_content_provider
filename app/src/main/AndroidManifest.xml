@@ -4,6 +4,7 @@
     package="com.chaudharynabin6.cheese_content_provider">
 
     <application
+        android:name=".CheeseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

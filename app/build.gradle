@@ -96,4 +96,8 @@ dependencies {
 
     // Activity KTX for viewModels()
     implementation "androidx.activity:activity-ktx:1.5.1"
+
+
+//    coroutine in activity
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
 }
