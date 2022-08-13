@@ -3,6 +3,7 @@ package com.chaudharynabin6.cheese_content_provider.provider
 import android.content.*
 import android.database.Cursor
 import android.net.Uri
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.chaudharynabin6.cheese_content_provider.data.datasource.local.CheeseDatabase
 import com.chaudharynabin6.cheese_content_provider.data.datasource.local.entities.Cheese
 import java.util.concurrent.Callable
@@ -40,9 +41,34 @@ class CheeseProvider : ContentProvider() {
     ): Cursor {
         val code = MATCHER.match(uri)
 
+        val constructedQuery = """
+              select ${
+            projection?.reduce { acc, s ->
+                "$acc , $s"
+            } ?: "*"
+        } from ${Cheese.TABLE_NAME} 
+                                ${
+            if (selection != null) {
+                " where $selection"
+            } else ""
+        }   
+        ${
+            if (sortOrder != null) {
+                "order by $sortOrder"
+            } else
+                ""
+        }
+        
+               """.trimIndent()
         return when (code) {
             CODE_CHEESE_DIR -> {
-                cheeseDatabase.cheeseDao.selectAll()
+                cheeseDatabase.cheeseDao.selectUsingRawQuery(
+                    query = SimpleSQLiteQuery(
+                        constructedQuery,
+                        selectionArgs
+                    )
+
+                )
             }
 
             CODE_CHEESE_ITEM -> {

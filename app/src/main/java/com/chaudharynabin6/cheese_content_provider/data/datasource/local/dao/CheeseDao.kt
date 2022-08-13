@@ -1,10 +1,8 @@
 package com.chaudharynabin6.cheese_content_provider.data.datasource.local.dao
 
 import android.database.Cursor
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.chaudharynabin6.cheese_content_provider.data.datasource.local.entities.Cheese
 
 /*
@@ -38,4 +36,7 @@ interface CheeseDao {
 
     @Update
     fun update(cheese: Cheese): Int
+
+    @RawQuery
+    fun selectUsingRawQuery(query: SupportSQLiteQuery) : Cursor
 }

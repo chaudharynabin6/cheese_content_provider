@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             val id = db.cheeseDao.insert(
                 Cheese(
-                    name = "test"
+                    name = "nabin"
                 )
             )
 
@@ -59,10 +59,18 @@ class MainActivity : AppCompatActivity() {
                 applicationContext,
                 CheeseProvider.URI_CHEESE,
                 arrayOf(Cheese.COLUMN_NAME, Cheese.COLUMN_ID),
-                null,
-                null,
-                null
+                "${Cheese.COLUMN_ID} = ? or ${Cheese.COLUMN_NAME} = ?",
+                arrayOf("1","nabin"),
+                "${Cheese.COLUMN_NAME} asc"
             )
+//            return CursorLoader(
+//                applicationContext,
+//                CheeseProvider.URI_CHEESE,
+//                null,
+//                null,
+//                null,
+//                null
+//            )
         }
 
         override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
