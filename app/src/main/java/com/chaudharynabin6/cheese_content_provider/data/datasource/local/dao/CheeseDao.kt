@@ -34,7 +34,7 @@ interface CheeseDao {
         delete from ${Cheese.TABLE_NAME}
         where ${Cheese.COLUMN_ID} = :id
     """)
-    fun deleteById(id: Long)
+    fun deleteById(id: Long) : Int
 
     @Update
     fun update(cheese: Cheese): Int

@@ -674,21 +674,22 @@ data class Cheese(
                 "Zamorano",
                 "Zanetti Grana Padano",
                 "Zanetti Parmigiano Reggiano")
+
+        fun fromContentValues(
+            values: ContentValues?,
+        ): Cheese? {
+
+            values ?: return null
+
+            if (values.containsKey(COLUMN_ID) && values.containsKey(COLUMN_NAME)) {
+                return Cheese(
+                    id = values.getAsLong(COLUMN_ID),
+                    name = values.getAsString(COLUMN_NAME)
+                )
+            }
+
+            return null
+        }
     }
 }
 
-fun Cheese.fromContentValues(
-    values: ContentValues?,
-): Cheese? {
-
-    values ?: return null;
-
-    if (values.containsKey(Cheese.COLUMN_ID) && values.containsKey(Cheese.COLUMN_NAME)) {
-        return Cheese(
-            id = values.getAsLong(Cheese.COLUMN_ID),
-            name = values.getAsString(Cheese.COLUMN_NAME)
-        )
-    }
-
-    return null
-}
