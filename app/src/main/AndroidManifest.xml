@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Cheese_content_provider"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name=".provider.CheeseProvider"
+            android:authorities="com.chaudharynabin6.cheese_content_provider.provider"
+            android:exported="true"
+            android:permission="com.chaudharynabin6.cheese_content_provider.provider.READ_WRITE" />
     </application>
 
 </manifest>

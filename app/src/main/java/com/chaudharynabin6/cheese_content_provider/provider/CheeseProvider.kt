@@ -6,11 +6,11 @@ import android.net.Uri
 import com.chaudharynabin6.cheese_content_provider.data.datasource.local.CheeseDatabase
 import com.chaudharynabin6.cheese_content_provider.data.datasource.local.entities.Cheese
 import java.util.concurrent.Callable
-import javax.inject.Inject
 
-class CheeseProvider @Inject constructor(
-    private val cheeseDatabase: CheeseDatabase,
-) : ContentProvider() {
+class CheeseProvider : ContentProvider() {
+
+
+    lateinit var cheeseDatabase: CheeseDatabase
 
     companion object {
         const val AUTHORITY = "com.chaudharynabin6.cheese_content_provider.provider"
@@ -27,6 +27,7 @@ class CheeseProvider @Inject constructor(
 
 
     override fun onCreate(): Boolean {
+        cheeseDatabase = context?.let { CheeseDatabase.getDb(context = it) }!!
         return true
     }
 

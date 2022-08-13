@@ -9,7 +9,9 @@ plugins {
 
 android {
     compileSdk 32
-
+    buildFeatures{
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.chaudharynabin6.cheese_content_provider"
         minSdk 29
